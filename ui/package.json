@@ -92,6 +92,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "@skidding/react-codemirror": "^1.0.1",
     "axios": "^0.13.1",
     "bootstrap": "^3.3.7",
     "calculate-size": "^1.1.1",
@@ -107,7 +108,7 @@
     "react": "^15.0.2",
     "react-addons-shallow-compare": "^15.0.2",
     "react-addons-update": "^15.1.0",
-    "react-codemirror": "^0.2.6",
+    "react-codemirror": "^1.0.0",
     "react-custom-scrollbars": "^4.1.1",
     "react-dimensions": "^1.2.0",
     "react-dom": "^15.0.2",
