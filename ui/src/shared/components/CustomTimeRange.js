@@ -14,35 +14,60 @@ class CustomTimeRange extends Component {
     const {timeRange} = this.props
 
     const lower = rome(this.lower, {
+      appendTo: this.container,
       initialValue: this._formatTimeRange(timeRange.lower),
+      autoClose: false,
+      autoHideOnBlur: false,
+      autoHideOnClick: false,
     })
+
     const upper = rome(this.upper, {
+      appendTo: this.container,
+      autoClose: false,
       initialValue: this._formatTimeRange(timeRange.upper),
+      autoHideOnBlur: false,
+      autoHideOnClick: false,
     })
 
     this.lowerCal = lower
     this.upperCal = upper
+
+    this.lowerCal.show()
+    this.upperCal.show()
   }
 
   // If there is an upper or lower time range set, set the corresponding calendar's value.
   componentWillReceiveProps(nextProps) {
     const {lower, upper} = nextProps.timeRange
     if (lower) {
+      const formattedLower = this._formatTimeRange(lower)
       this.lowerCal.setValue(this._formatTimeRange(lower))
+      this.lower.value = formattedLower
     }
 
     if (upper) {
+      const formattedUpper = this._formatTimeRange(upper)
       this.upperCal.setValue(this._formatTimeRange(upper))
+      this.upper.value = formattedUpper
     }
   }
 
   render() {
+    const {lower, upper} = this.props.timeRange
+
     return (
       <div className="custom-time--container">
-        <div className="custom-time--dates">
-          <div className="custom-time--lower" ref={r => (this.lower = r)} />
-          <div className="custom-time--upper" ref={r => (this.upper = r)} />
+        <div className="input-container" style={{display: 'flex'}}>
+          <input
+            className="form-control input-sm custom-time--lower"
+            ref={r => (this.lower = r)}
+          />
+          <input
+            className="form-control input-sm custom-time--upper"
+            ref={r => (this.upper = r)}
+          />
         </div>
+        <div className="custom-time--dates" ref={r => (this.container = r)} />
         <div
           className="custom-time--apply btn btn-sm btn-primary"
           onClick={this.handleClick}
